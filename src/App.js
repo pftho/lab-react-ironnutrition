@@ -29,15 +29,29 @@ function App() {
     setFood(newFoodList);
   };
 
+  // const handleFilterFood = (searchInput) => {
+  //   const foodCopy = [...food];
+
+  //   const filtered = !searchInput
+  //     ? food
+  //     : foodCopy.filter((foodItem) => {
+  //         console.log(foodItem.name);
+  //         console.log(searchInput);
+  //
+  //       });
+  //   console.log(filtered);
+  //   setFood(filtered);
+  // };
+
   const handleFilterFood = (searchInput) => {
     let filterFood;
 
     if (searchInput === '') {
       filterFood = food;
-    }
+    } 
     const foodCopy = [...food];
     filterFood = foodCopy.filter((foodItem) => {
-      return foodItem.name.toLowerCase() === searchInput.toLowerCase();
+      return foodItem.name.toLowerCase().includes(searchInput.toLowerCase());
     });
 
     setFood(filterFood);

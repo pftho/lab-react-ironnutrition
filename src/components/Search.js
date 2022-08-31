@@ -19,7 +19,6 @@ function Search({ filterFood }) {
 
       <label>Search</label>
       <Input
-        placeholder="Search..."
         value={SearchInput}
         type="text"
         onChange={(e) => {
