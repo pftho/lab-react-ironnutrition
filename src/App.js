@@ -4,6 +4,8 @@ import { useState } from 'react';
 import { Row, Divider, Button } from 'antd';
 import FoodBox from './components/FoodBox';
 import AddFoodForm from './components/AddFoodForm';
+import Search from './components/Search';
+
 import { v4 as uuidv4 } from 'uuid';
 
 const NewData = foods.map(({ name, calories, image, servings }) => {
@@ -27,12 +29,26 @@ function App() {
     setFood(newFoodList);
   };
 
+  const handleFilterFood = (searchInput) => {
+    let filterFood;
+
+    if (searchInput === '') {
+      filterFood = food;
+    }
+    const foodCopy = [...food];
+    filterFood = foodCopy.filter((foodItem) => {
+      return foodItem.name.toLowerCase() === searchInput.toLowerCase();
+    });
+
+    setFood(filterFood);
+  };
+
   return (
     <div className="App">
       <AddFoodForm addFood={handleAddFood} />
 
       <Button> Hide Form / Add New Food </Button>
-
+      <Search filterFood={handleFilterFood} />
       <Divider>Food List</Divider>
       <Row style={{ width: '100%', justifyContent: 'center' }}>
         {food.map((foodItem) => {

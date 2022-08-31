@@ -3,15 +3,29 @@
 // and content that the component should render.
 // Remember to import Ant Design components before using them.
 import { Divider, Input } from 'antd';
+import { useState } from 'react';
 
 // Iteration 5
-function Search(props) {
+function Search({ filterFood }) {
+  const [SearchInput, setSearchInput] = useState('');
+  const searchItems = (SearchInput) => {
+    setSearchInput(SearchInput);
+    filterFood(SearchInput);
+  };
+
   return (
     <>
       <Divider>Search</Divider>
 
       <label>Search</label>
-      <Input value={undefined} type="text" onChange={() => {}} />
+      <Input
+        placeholder="Search..."
+        value={SearchInput}
+        type="text"
+        onChange={(e) => {
+          searchItems(e.target.value);
+        }}
+      />
     </>
   );
 }
